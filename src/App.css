@@ -49,3 +49,9 @@ body{
   padding: 10px;
   font-size: 18px;
 }
+
+.logout-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}

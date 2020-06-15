@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {loginUser} from '../redux/authReducer'
 
 class Login extends Component {
     constructor(){
@@ -9,6 +11,8 @@ class Login extends Component {
             password: ''
         }
     }
+
+
 
     changeHandler = (e) => {
         this.setState({
@@ -22,6 +26,8 @@ class Login extends Component {
         axios.post('/auth/login', {email, password})
         .then( res => {
             // redux magic 🌟
+            this.props.loginUser(res.data)
+            this.props.history.push('/album')
         })
         .catch(err => {
             alert('Could not log in')
@@ -59,4 +65,6 @@ class Login extends Component {
     }
 }
 
-export default Login
+const mapStateToProps = state => state
+
+export default connect(mapStateToProps, {loginUser})(Login)
