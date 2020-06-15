@@ -22,6 +22,7 @@ class Login extends Component {
         axios.post('/auth/login', {email, password})
         .then( res => {
             // redux magic 🌟
+            this.props.history.push('/album')
         })
         .catch(err => {
             alert('Could not log in')
